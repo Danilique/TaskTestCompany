@@ -19,12 +19,3 @@ import org.junit.runner.RunWith;
 )
 public class TestRunner {
 }
-```
-
-**Ctrl+S** to save.
-
----
-
-Now create the Allure config file. Right-click on `resources` folder → **New File** → name it `allure.properties`, open it and type:
-```
-allure.results.directory=build/allure-results

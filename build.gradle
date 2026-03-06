@@ -16,7 +16,7 @@ configurations {
 }
 
 dependencies {
-    implementation 'io.appium:java-client:8.6.0'
+    implementation 'io.appium:java-client:9.3.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.15.0'
     testImplementation 'io.cucumber:cucumber-java:7.14.0'
     testImplementation 'io.cucumber:cucumber-junit:7.14.0'

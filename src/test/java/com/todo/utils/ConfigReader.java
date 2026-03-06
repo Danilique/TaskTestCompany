@@ -1,7 +1,7 @@
 package com.todo.utils;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
@@ -10,21 +10,24 @@ public class ConfigReader {
 
     static {
         try {
-            FileInputStream file = new FileInputStream(
-                "src/test/resources/config.properties"
-            );
+            InputStream stream = ConfigReader.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties");
+            if (stream == null) {
+                throw new RuntimeException("config.properties not found in classpath");
+            }
             properties = new Properties();
-            properties.load(file);
-            file.close();
+            properties.load(stream);
+            stream.close();
         } catch (IOException e) {
-            throw new RuntimeException("config.properties file not found", e);
+            throw new RuntimeException("Failed to load config.properties", e);
         }
     }
 
     public static String get(String key) {
         String value = properties.getProperty(key);
         if (value == null) {
-            throw new RuntimeException("Property '" + key + "' not found in config.properties");
+            throw new RuntimeException("Property '" + key + "' not found");
         }
         return value;
     }
